@@ -1,0 +1,85 @@
+name:                TPE
+version:             0.0.1.0
+synopsis:            Projet de TPE
+description:         Merci de lire README.md
+homepage:            https://github.com/MaloJaffre/TPE#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Malo Jaffré
+maintainer:          jaffre.malo@gmail.com
+copyright:           2016 Malo Jaffré
+category:            Games
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  ghc-options:         -Wall
+  exposed-modules:     TPE
+                     , TPE.Prelude
+                     , TPE.Types
+                     , TPE.Plateau
+                     , TPE.Plateau.Manips
+                     , TPE.Gen
+  other-modules:
+  build-depends:       base
+                     , classy-prelude
+                     , vector
+                     , chunked-data
+                     , witherable
+                     , lens
+                     , containers
+                     , array
+                     , random
+                     , MonadRandom
+                     , mtl
+                     , bifunctors
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+executable TPE-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , TPE
+                     , classy-prelude
+                     , vector
+                     , chunked-data
+                     , witherable
+                     , lens
+                     , containers
+                     , array
+                     , random
+                     , MonadRandom
+                     , mtl
+                     , bifunctors
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+test-suite TPE-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , TPE
+                     , classy-prelude
+                     , vector
+                     , chunked-data
+                     , witherable
+                     , lens
+                     , HTF
+                     , containers
+                     , array
+                     , random
+                     , MonadRandom
+                     , mtl
+                     , bifunctors
+  ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings, NoImplicitPrelude
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/TPE
