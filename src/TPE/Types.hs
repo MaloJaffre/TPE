@@ -11,9 +11,11 @@ module TPE.Types
  ) where
 
 import TPE.Prelude
+
 --  joueur      1   2
 data Case = V | O | X
  deriving (Eq, Ord, Enum, Generic)
+
 instance Show Case
   where
     show V = " "
@@ -25,7 +27,7 @@ instance Hashable Case
 type Plateau = [Case]
 type IDP = Int
 
-type Info' = (Plateau, Vector IDP, Case, Case, Bool) -- (pcorr, nexts, joueur, gagn, moving)
+type Info' = (Plateau, Vector IDP, Case, Case, Bool)
 type Info = UVector IDP
 
 type Gene = IDP

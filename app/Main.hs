@@ -58,13 +58,10 @@ select = map fst . take 500 . sortOn (Down . snd)
 main :: IO ()
 main = do
   n <- readLn :: IO Int
-  -- ind <- evalRandIO $ gen ()
-  popinitiale <- evalRandIO . replicateM 10 . replicateM 1000 $ gen () -- :: IO (Seq Population)
-  --pop <- evalRandIO $ step popinitiale
-  popap <- evalRandIO $ (return . sortOn (Down . snd) . uncurry zip . bimap headEx (uncurry (flip evaluate) . fromJustEx . uncons) . copy) <=< iterateN n (>>= step) $ return popinitiale
-  --c <- evalRandIO $ cmp a b
-  -- d <- evalRandIO . mapM (uncurry cmp) . zipCons $ popinitiale
-  -- print . map snd $ popap
+  popinitiale <- evalRandIO . replicateM 10 . replicateM 1000 $ gen ()
+  popap <- evalRandIO $ (return . sortOn (Down . snd) . uncurry zip . bimap headEx (uncurry (flip evaluate) . fromJustEx . uncons) . copy)
+    <=< iterateN n (>>= step) $ return popinitiale
+
   putStrLn . unlines . map (pack . show) $ popap
   printLn . stat . fst . headEx $ popap
   putStrLn . ppg . fst . headEx $ popap

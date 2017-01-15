@@ -23,6 +23,7 @@ import Data.Witherable as Exports (hashNub, ordNub)
 import Data.Vector (scanl')
 import Data.ChunkedZip
 import Control.Monad.Reader as Exports (reader)
+
 (.:) :: (c -> d) -> (a -> b -> c) -> a -> b -> d
 (.:) = (.) . (.)
 infixr 9 .:

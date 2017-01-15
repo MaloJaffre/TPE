@@ -16,6 +16,7 @@ import Control.Monad.ST
 import Data.STRef
 import qualified Data.Vector as V
 import qualified Data.Vector.Mutable as V
+
 class Gen i a  where
   gen :: RandomGen g => i -> Rand g a
 instance Gen () Genome where
@@ -31,7 +32,7 @@ instance Gen () Bool where
   gen :: RandomGen g => () -> Rand g Bool
   gen = const . liftRand $ random
 
--- Knuth-Fisher-Yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+-- Fisher-Yates shuffle https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 shuffle :: forall a g. RandomGen g => Vector a -> Rand g (Vector a)
 shuffle a = liftRand $ \g -> runST $ (>>= bitraverse V.freeze return) . (>>= modi (length a)) . bisequence . (, return g) . V.thaw $ a
   where

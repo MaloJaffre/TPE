@@ -80,7 +80,7 @@ prettyp (a : b : c :
 moving :: Plateau -> Bool
 moving p = occurrences V p == 3
 
-joueur :: Plateau -> Case -- only if moving p == false
+joueur :: Plateau -> Case
 joueur p
  | no     == nx = O
  | no - 1 == nx = X

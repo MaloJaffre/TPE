@@ -27,6 +27,7 @@ idsimp' = mapFromList . toList . zip (hash <$> plateaux) .
 
 idsimp :: Plateau -> (IDP, IDP)
 idsimp = fromJustEx . (`lookup` idsimp') . hash
+
 -- ID827
 infos' :: Vector Info'
 infos' = map doIt . foldMap (\p -> if moving p then [(O,p), (X,p)] else [(joueur p, p)]) . reduce $ plateaux
@@ -39,8 +40,7 @@ infos' = map doIt . foldMap (\p -> if moving p then [(O,p), (X,p)] else [(joueur
       , moving p)
 
 infos :: Vector Info
-infos = -- [[1..10], [11..20]]
-  map (\(_, l, _, ws, _)-> if ws /= V then [] else U.convert l) infos'
+infos = map (\(_, l, _, ws, _)-> if ws /= V then [] else U.convert l) infos'
 
 fini :: UVector Bool
 fini = fromList . toList . map null $ infos
